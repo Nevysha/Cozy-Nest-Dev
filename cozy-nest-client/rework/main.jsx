@@ -19,9 +19,9 @@ export function startCozyNest() {
     client.render(
       <React.StrictMode>
         <ConfigProvider>
-          <ChakraProvider theme={theme} >
+          {/*<ChakraProvider theme={theme} >*/}
             <App />
-          </ChakraProvider >
+          {/*</ChakraProvider >*/}
         </ConfigProvider>
       </React.StrictMode>,
     );

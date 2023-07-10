@@ -1,5 +1,4 @@
 import React, {Profiler, Suspense, useEffect, useRef, useState} from "react";
-// import '@rework/variables.css';
 import '@rework/GradioTheme.scss';
 import '@rework/overload-native.scss';
 import '@rework/Loading.scss';
