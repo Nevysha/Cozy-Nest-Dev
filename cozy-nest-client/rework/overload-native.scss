@@ -1,0 +1,177 @@
+@import "@catppuccin/palette/scss/mocha";
+@import "Variables";
+
+body {
+  .hide, .hidden {
+    display: none;
+  }
+
+  button {
+    background-color: $crust;
+    color: $text;
+    border-radius: $border-radius;
+  }
+
+  textarea {
+    resize: none;
+    padding: 8px;
+    overflow-y: hidden !important;
+    background-color: $crust;
+    width: 100%;
+    color: $subtext1;
+    font-family: monospace;
+  }
+
+  label {
+    width: fit-content;
+    display: block;
+  }
+}
+
+.CozyNestLayout {
+
+  .gradio-button.secondary-down:hover {
+    background: var(--button-secondary-background-fill-hover);
+    color: var(--button-secondary-text-color-hover);
+  }
+
+  .gradio-dropdown {
+
+    .secondary-wrap {
+      display: flex;
+      flex-direction: row;
+      background-color: $crust;
+      width: fit-content;
+
+      svg {
+        margin: auto;
+      }
+    }
+
+    ul.options {
+      li.item {
+        &:hover {
+          background-color: var(--ae-primary-color);
+        }
+      }
+      li.item.selected {
+        background-color: var(--ae-primary-color) !important;
+      }
+    }
+  }
+
+  .progressDiv .progress {
+    background: var(--ae-primary-color) !important;;
+  }
+
+  /* Show the up/down arrows of number inputs */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    position: relative;
+  }
+
+  /* Set up arrow */
+  input[type="number"]::-webkit-inner-spin-button::before {
+    content: '\25b2';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    text-align: center;
+    color: red;
+    font-size: 10px;
+  }
+
+  /* Set down arrow */
+  input[type="number"]::-webkit-inner-spin-button::after {
+    content: '\25bc';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    color: red;
+    font-size: 10px;
+  }
+
+  .gradio-accordion {
+    background-color: var(--nevysha-light-dark) !important;
+    border-left: none !important;
+    border-bottom: none !important;
+    border-right: none !important;
+    border-radius: 3px !important;
+    color: var(--secondary-text-color) !important;
+    margin: 6px 0 !important;
+  }
+
+  .gradio-slider input[type=range] {
+    align-self: flex-start;
+  }
+
+  .gradio-container.app {
+    padding: 2px !important;
+    transform: rotateZ(360deg)
+  }
+
+  input[type=range] {
+    overflow: hidden;
+    width: 100%;
+    -webkit-appearance: none;
+    //background-color: var(--ae-input-bg-color);
+    border: 1px solid var(--ae-input-border-color);
+    position: relative;
+    accent-color: var(--ae-primary-color) !important;
+    //display: none;
+  }
+
+  input[type=range]::after {
+    content: '';
+    position: absolute;
+    height: 13px;
+    //background-image: var(--ae-slider-bg-overlay);
+    opacity: 0.15;
+    width: 100%;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 14px;
+    -webkit-appearance: none;
+    color: var(--ae-primary-color);
+    margin-top: -1px;
+  }
+
+  input[type=range]::-moz-range-thumb,
+  input[type=range]::-webkit-slider-thumb {
+    color: var(--ae-primary-color);
+    border-radius: 0;
+  }
+
+  #tabs {
+    .tabitem {
+      background-color: var(--main-tabs-background-color);
+      border: none;
+      border-radius: 0;
+      overflow-y: auto;
+      //height: var(--main-container-height);
+      padding: 0 10px !important;
+    }
+  }
+
+  span[class^="svelte-"], span[class*=" svelte-"] {
+    color: $text;
+  }
+
+  .block.token-counter span {
+    box-shadow: none;
+    border-radius: $border-radius;
+    color: var(--secondary-accent-color);
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "cozy-nest-dev",
+  "private": true,
+  "version": "2.4.3",
+  "description": "Cozy Nest is a rework of Automatic's popular Stable Diffusion webui interface, working as a non intrusive extension.",
+  "keywords": [
+    "stable-diffusion-webui",
+    "cozy-nest",
+    "extensions"
+  ],
+  "homepage": "https://github.com/Nevysha/Cozy-Nest",
+  "bugs": {
+    "url": "https://github.com/Nevysha/Cozy-Nest/issues/new/choose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nevysha/Cozy-Nest.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build-cozy": "vite build && rollup --config && node cozy.build.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@catppuccin/palette": "^0.1.8",
+    "@chakra-ui/react": "^2.7.0",
+    "@fontsource-variable/caveat": "^5.0.0",
+    "ace": "^1.3.0",
+    "ace-builds": "^1.22.0",
+    "animate.css": "^4.1.1",
+    "chalk": "^5.3.0",
+    "eventemitter3": "^5.0.1",
+    "jquery": "^3.7.0",
+    "react": "^18.2.0",
+    "react-accessible-treeview": "^2.6.1",
+    "react-ace": "^10.1.0",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^18.2.0",
+    "react-drag-drop-files": "^2.3.10",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.10.1",
+    "react-select": "^5.7.3",
+    "react-spinners": "^0.13.8",
+    "react-use-websocket": "^3.0.0",
+    "showdown": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-import-assertions": "^7.20.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "rollup": "^3.26.2",
+    "sass": "^1.63.6",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.2"
+  }
+}

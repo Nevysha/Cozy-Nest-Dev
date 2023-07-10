@@ -1,0 +1,186 @@
+.CozyPrompt {
+
+  min-height: 100px;
+  max-height: 800px;
+  width: 100%;
+  border: 1px solid var(--ae-input-border-color) !important;
+
+  .CozyPrompt .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  .CozyPrompt .ace_cursor-layer {
+    z-index: 900;
+  }
+
+  .CozyPrompt .ace_cursor-layer .ace_cursor {
+    z-index: 901;
+    background-color: var(--ae-primary-color);
+    position: fixed;
+    width: 2px !important;
+  }
+
+  .CozyPrompt.bold-cursor .ace_cursor-layer .ace_cursor {
+    width: 9px !important;
+  }
+
+  @keyframes blink-ace-animate {
+    from, to {
+      opacity: 0.5;
+    }
+    60% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes blink-ace-animate-smooth {
+    from, to {
+      opacity: 0.5;
+    }
+    45% {
+      opacity: 0.5;
+    }
+    60% {
+      opacity: 0;
+    }
+    85% {
+      opacity: 0;
+    }
+  }
+
+  .ace_active-line {
+    background: #ffffff0d !important;
+  }
+
+  .ace_completion-highlight {
+    color: var(--ae-primary-color) !important;
+  }
+
+  .ace_editor.ace_autocomplete {
+    width: 400px !important;
+  }
+
+  div.ace_editor.ace_autocomplete.ace_dark.ace-github-dark > div.ace_scroller > div > div.ace_layer.ace_text-layer > div.ace_line {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 380px !important;
+  }
+
+  div.ace_editor.ace_autocomplete.ace_dark.ace-github-dark > div.ace_scroller > div > div.ace_layer.ace_text-layer > div.ace_line > span.ace_completion-spacer {
+    flex: 1 !important;
+  }
+
+  .CozyPrompt {
+    /*padding: 10px;*/
+    background-color: var(--input-background-fill) !important;
+  }
+
+  .CozyPrompt .ace_editor {
+    background-color: var(--input-background-fill) !important;
+  }
+
+  .CozyPrompt .ace_scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .CozyPrompt .ace_scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .CozyPrompt .ace_scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--ae-primary-color);
+    border-radius: 20px;
+  }
+
+  .CozyPrompt__resize-handle {
+    width: 100%;
+    height: 10px;
+    /* background-color: var(--ae-input-border-color); */
+    cursor: row-resize;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2px 0;
+  }
+
+  .CozyPrompt__resize-handle-line {
+    height: 2px;
+    background-image: repeating-linear-gradient(to right, var(--vertical-line-bg-color) 0, var(--vertical-line-bg-color) 7px, transparent 1px, transparent 14px);
+    background-size: 100% 13px;
+    opacity: 0.7;
+    width: 50%;
+  }
+
+  /*Editor color*/
+  .ace_text-layer {
+    color: var(--body-text-color);
+    font-family: monospace !important;
+  }
+
+  .ace_open-bracket, .ace_close-bracket {
+    color: var(--ae-primary-color);
+    font-weight: bold;;
+    /*font-size: 1.1em;*/
+  }
+
+  .ace_open-bracket-0, .ace_close-bracket-0 {
+    color: violet;
+  }
+
+  .ace_open-bracket-1, .ace_close-bracket-1 {
+    color: var(--ae-primary-color);
+  }
+
+  .ace_open-bracket-2, .ace_close-bracket-2 {
+    color: hotpink;
+  }
+
+  .ace_open-bracket-3, .ace_close-bracket-3 {
+    color: greenyellow;
+  }
+
+  .ace_open-bracket-4, .ace_close-bracket-4 {
+    color: #fa662a;
+  }
+
+  .ace_token {
+    color: #cccc96;
+    font-weight: bold;
+    /*margin: 0 3px;*/
+  }
+
+  .ace_attention {
+    color: #f35a5a;
+  }
+
+  .ace_lora-begin, .ace_lora-end, .ace_lora-inner {
+    color: #08c2d3;
+  }
+
+  .ace_hypernetwork-begin, .ace_hypernetwork-end, .ace_hypernetwork-inner,
+  .ace_hypernet-begin, .ace_hypernet-end, .ace_hypernet-inner {
+    color: #ff6800;
+  }
+
+  .ace_lyco-begin, .ace_lyco-end, .ace_lyco-inner {
+    color: #c444d5;
+  }
+
+  .ace_wildcard {
+    color: #4cd041;
+    font-style: italic;
+  }
+
+  .ace_lora-begin, .ace_lora-end,
+  .ace_hypernetwork-begin, .ace_hypernetwork-end,
+  .ace_hypernet-begin, .ace_hypernet-end,
+  .ace_lyco-begin, .ace_lyco-end {
+    font-weight: bold;
+    /*font-size: 1.1em;*/
+    filter: brightness(1.2);
+  }
+}

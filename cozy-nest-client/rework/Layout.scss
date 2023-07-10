@@ -1,0 +1,150 @@
+@import "@catppuccin/palette/scss/mocha";
+@import "Variables";
+
+.CozyNestLayout {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: $base;
+
+  a, input {
+    color: $text;
+  }
+  input {
+    background-color: $crust;
+    padding: 5px;
+  }
+  svg {
+    fill: var(--secondary-accent-color);
+  }
+
+  div[cn-css="tab"], .Any2Img {
+    overflow-y: auto;
+    display: flex;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--ae-primary-color);
+      border-radius: 20px;
+    }
+  }
+
+  .Tabs {
+    overflow-y: hidden;
+    padding: 15px;
+    flex: 1;
+    margin-right: calc($side-panel-btn-width + 10px);
+  }
+
+  .SidePanels {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: $side-panel-btn-width;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .SidePanel {
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .label {
+        writing-mode: vertical-rl;
+      }
+
+      button {
+        height: 100%;
+      }
+    }
+  }
+
+  .Footer {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    justify-content: center;
+    background-color: $crust;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--ae-primary-color);
+      position: absolute;
+      opacity: 0.7;
+    }
+  }
+
+  div[cn-css="footer-version"] {
+    color: $text;
+  }
+
+  div[cn-css="tab-settings"] {
+    .gradio-tabs {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      width: 100%;
+      margin-bottom: 10px;
+
+      .tab-nav {
+        width: 225px;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+  //elements that are push inside Cozy Nest controlled one but not part of Cozy Nest
+  .cn-gradio-pristine {
+
+    .cn-flex-row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-bottom: 10px;
+      gap: 0.5rem;
+
+      > div {
+        flex-grow: 1;
+      }
+    }
+
+    .cn-flex-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: inherit;
+      gap: 0.5rem;
+    }
+
+    button {
+      padding: 5px;
+      border-radius: $border-radius;
+    }
+  }
+}
