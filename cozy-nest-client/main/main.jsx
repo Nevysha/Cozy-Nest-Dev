@@ -16,7 +16,7 @@ import {startCozyExtraNetwork} from "@cozy_extra_network/main.jsx";
 import CozyModal from './modal/Module.jsx';
 import {LoadingEventBus} from "@rework/App";
 import {startCozyNest} from "@rework/main";
-import {removeExistingCss} from "@main/cozy-utils.js";
+import {removeExistingCss} from "@rework/script/pruneStyle";
 window.CozyTools = {
   stop:() => setTimeout(function(){debugger;}, 5000),
   removeExistingCss: removeExistingCss,
@@ -24,39 +24,39 @@ window.CozyTools = {
 
 export async function _cozyNestLoader()  {
 
-    await fetchCozyNestConfig();
+  await fetchCozyNestConfig();
 
-    if (COZY_NEST_CONFIG.webui === WEBUI_SDNEXT) {
-        patchCozyNestForSdNext();
+  if (COZY_NEST_CONFIG.webui === WEBUI_SDNEXT) {
+    patchCozyNestForSdNext();
+  }
+
+  await cozyNestModuleLoader(async () => {
+    // startCozyNestSettings();
+
+    if (COZY_NEST_CONFIG.enable_cozy_prompt === true) {
+      await startCozyPrompt('txt2img_prompt', 'cozy_nest_prompt_txt2img', 'txt2img');
+      await startCozyPrompt('img2img_prompt', 'cozy_nest_prompt_img2img', 'img2img');
+
+      OverrideUiJs.override_confirm_clear_prompt();
+    }
+    if (COZY_NEST_CONFIG.enable_extra_network_tweaks === true) {
+      await startExtraNetwork('txt2img')
+      await startExtraNetwork('img2img')
+    }
+    if (COZY_NEST_CONFIG.enable_cozy_extra_networks === true) {
+      await startCozyExtraNetwork()
     }
 
-    await cozyNestModuleLoader(async () => {
-        // startCozyNestSettings();
+    startCozyNestImageBrowser();
 
-        if (COZY_NEST_CONFIG.enable_cozy_prompt === true) {
-            await startCozyPrompt('txt2img_prompt', 'cozy_nest_prompt_txt2img', 'txt2img');
-            await startCozyPrompt('img2img_prompt', 'cozy_nest_prompt_img2img', 'img2img');
+    // load modal module
+    await CozyModal.prepareReactHost();
 
-            OverrideUiJs.override_confirm_clear_prompt();
-        }
-        if (COZY_NEST_CONFIG.enable_extra_network_tweaks === true) {
-            await startExtraNetwork('txt2img')
-            await startExtraNetwork('img2img')
-        }
-        if (COZY_NEST_CONFIG.enable_cozy_extra_networks === true) {
-            await startCozyExtraNetwork()
-        }
+    CozyNestEventBus.emit('cozy-nest-loaded');
+    LoadingEventBus.emit('cozy-nest-loaded');
+  });
 
-        startCozyNestImageBrowser();
-
-        // load modal module
-        await CozyModal.prepareReactHost();
-
-        CozyNestEventBus.emit('cozy-nest-loaded');
-        LoadingEventBus.emit('cozy-nest-loaded');
-    });
-
-    setTimeout(checkClientEnv, 1000); // small timer just for UX purposes
+  setTimeout(checkClientEnv, 1000); // small timer just for UX purposes
 }
 
 export default async function cozyNestLoader()  {
@@ -68,24 +68,28 @@ export default async function cozyNestLoader()  {
 window.cozyNestLoader = cozyNestLoader;
 
 (async () => {
-    if (hasCozyNestNo()) {
-        return
-    }
+  if (hasCozyNestNo()) {
+    return
+  }
 
-    // const styleSheet = new CSSStyleSheet();
-    // styleSheet.replaceSync(sheet);
-    // document.adoptedStyleSheets = [styleSheet];
+  // const styleSheet = new CSSStyleSheet();
+  // styleSheet.replaceSync(sheet);
+  // document.adoptedStyleSheets = [styleSheet];
 
-    SimpleTimer.time(COZY_NEST_GRADIO_LOAD_DURATION);
+  onUiLoaded(() => {
+    LoadingEventBus.emit('gradio-ui-loaded');
+  });
 
-    startCozyNest();
+  SimpleTimer.time(COZY_NEST_GRADIO_LOAD_DURATION);
 
-    if (import.meta.env.VITE_CONTEXT === 'DEV') {
-        CozyLogger.debug('DEV MODE');
-        document.addEventListener("DOMContentLoaded", function() {
-            cozyNestLoader();
-        })
-    }
+  startCozyNest();
+
+  if (import.meta.env.VITE_CONTEXT === 'DEV') {
+    CozyLogger.debug('DEV MODE');
+    document.addEventListener("DOMContentLoaded", function() {
+      cozyNestLoader();
+    })
+  }
 })();
 
 

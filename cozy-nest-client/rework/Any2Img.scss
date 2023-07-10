@@ -1,5 +1,4 @@
-@import "@catppuccin/palette/scss/mocha";
-@import "Variables";
+@import "Main";
 
 .Any2Img {
 
@@ -29,8 +28,8 @@
 
     div[cn-css="generate"] {
       button {
-        background-color: var(--ae-primary-color);
-        color: var(--nevysha-color-from-luminance);
+        //background-color: var(--ae-primary-color);
+        //color: var(--nevysha-color-from-luminance);
       }
     }
   }
@@ -104,6 +103,8 @@
       display: flex;
       flex: 1;
       flex-direction: column;
+      padding: 10px !important;
+      border: 3px solid $crust;
 
       div {
 

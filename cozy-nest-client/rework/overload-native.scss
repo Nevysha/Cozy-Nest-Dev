@@ -1,9 +1,8 @@
-@import "@catppuccin/palette/scss/mocha";
-@import "Variables";
+@import "Main";
 
 body {
   .hide, .hidden {
-    display: none;
+    display: none !important;
   }
 
   button {
@@ -171,7 +170,7 @@ body {
   .block.token-counter span {
     box-shadow: none;
     border-radius: $border-radius;
-    color: var(--secondary-accent-color);
+    color: $cn-primary;
     font-weight: bold;
   }
 }

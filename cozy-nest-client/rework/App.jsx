@@ -1,11 +1,12 @@
 import React, {Profiler, Suspense, useEffect, useRef, useState} from "react";
-import '@rework/variables.css';
+// import '@rework/variables.css';
+import '@rework/GradioTheme.scss';
 import '@rework/overload-native.scss';
 import '@rework/Loading.scss';
 import Loader from "react-spinners/CircleLoader";
 import EventEmitter from 'eventemitter3';
 import {Layout} from "@rework/Layout";
-import {getTheme, hideNativeUiExtraNetworkElement, removeExistingCss} from "@main/cozy-utils";
+import {getTheme, hideNativeUiExtraNetworkElement} from "@main/cozy-utils";
 import {CozyLogger} from "@main/CozyLogger";
 import {useConfig} from "@rework/ConfigContext";
 import SimpleTimer from "@main/SimpleTimer";
@@ -91,6 +92,15 @@ class LoadingEventEmitter extends EventEmitter {
     this.hasEmitted = []
   }
 
+  onEver(event, callback, ...args) {
+
+    this.on(event, callback, ...args);
+
+    if (this.has(event)) {
+      callback(...args);
+    }
+  }
+
   emit(event, ...args) {
     CozyLogger.debug(`LoadingEventBus: ${event}`)
     this.hasEmitted.push(event);
@@ -116,23 +126,17 @@ export function App() {
 
     removeGradioLoading();
 
-    if (LoadingEventBus.has('cozy-nest-loaded')) {
-      removeExistingCss();
-      setLoading(false);
-    }
-
-    onUiLoaded(() => {
-      removeExistingCss();
+    LoadingEventBus.onEver('gradio-ui-loaded', () => {
       setGradioUILoading(false)
-    });
+    })
 
-    LoadingEventBus.on('cozy-nest-loaded', () => {
-      removeExistingCss();
+    LoadingEventBus.onEver('cozy-nest-loaded', () => {
       setLoading(false);
     });
 
     return () => {
       LoadingEventBus.off('cozy-nest-loaded');
+      LoadingEventBus.off('gradio-ui-loaded');
     }
 
   }, [])
@@ -147,18 +151,11 @@ export function App() {
 
   }, [gradioUILoading, loading, config])
 
-  function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
-    // const profilingData = {
-    //   id,
-    //   phase,
-    //   actualDuration,
-    //   baseDuration,
-    //   startTime,
-    //   commitTime,
-    // };
-    //
-    // console.table(profilingData);
-  }
+  // useEffect(() => {
+  //   if (config.theme !== 'light') {
+  //     document.body.classList.add('dark')
+  //   }
+  // }, [config])
 
   function removeGradioLoading() {
     document.body.setAttribute('style', '');
@@ -168,11 +165,9 @@ export function App() {
     <Suspense fallback={<Loading />}>
       {!ready ? <Loading /> :
         (
-          <Profiler id="App" onRender={onRender}>
-            <TweaksNative>
-              <Layout />
-            </TweaksNative>
-          </Profiler>
+          <TweaksNative>
+            <Layout />
+          </TweaksNative>
         )}
     </Suspense>
   );

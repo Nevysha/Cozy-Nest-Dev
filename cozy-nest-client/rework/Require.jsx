@@ -25,6 +25,15 @@ export const Require = memo(({a1111:selector, cnFor, sdNext, cnCss}) => {
   );
 });
 
+export const Trash = memo(({a1111:selector}) => {
+
+  return (
+      <div style={{display:'none'}}>
+        <RequireAll a1111={selector} cnCss="trash"/>
+      </div>
+  )
+});
+
 export const RequireAll = memo(({ a1111, cnCss }) => {
   const [uniqueSelectors, setUniqueSelectors] = useState([]);
 

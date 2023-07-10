@@ -1,5 +1,4 @@
-@import "@catppuccin/palette/scss/mocha";
-@import "Variables";
+@import "Main";
 
 .CozyNestLayout {
   width: 100vw;
@@ -42,7 +41,7 @@
 
   .Tabs {
     overflow-y: hidden;
-    padding: 15px;
+    padding: 15px 15px 0px 15px;
     flex: 1;
     margin-right: calc($side-panel-btn-width + 10px);
   }

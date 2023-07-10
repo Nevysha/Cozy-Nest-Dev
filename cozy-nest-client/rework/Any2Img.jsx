@@ -1,8 +1,8 @@
 import React from "react";
-import {Require, RequireAll} from "@rework/Require";
+import {Require, RequireAll, Trash} from "@rework/Require";
 import S, {Selector} from "@rework/Selector";
 import './Any2Img.scss'
-import {Row} from "@rework/Generic";
+import {Row, Column} from "@rework/Generic";
 
 const _select = (a1111) => (suffix) => `${a1111} ${suffix}`
 
@@ -40,7 +40,7 @@ export function Any2Img({a1111, prefix, cnCssPrefix}) {
 
   return (
         <div className="Any2Img">
-          <Row>
+          <Column>
             <div className="Settings">
               <div className="Header">
                 <GenerateBox a1111={generateBox} />
@@ -49,8 +49,8 @@ export function Any2Img({a1111, prefix, cnCssPrefix}) {
                   <Require a1111={topRow} cnCss={`${cnCssPrefix}-toprow`}/>
                 </Row>
               </div>
+              <Require a1111={stylesRow} cnCss={`${cnCssPrefix}-styles-row`}/>
               <div className="Content">
-                <Require a1111={stylesRow} cnCss={`${cnCssPrefix}-styles-row`}/>
                 <Require a1111={settings} cnCss={`${cnCssPrefix}-settings`}/>
                 <RequireAll a1111={
                   Selector(`${a1111} > div > div`)
@@ -58,10 +58,14 @@ export function Any2Img({a1111, prefix, cnCssPrefix}) {
                     .use()
                 }
                 />
+                <Trash a1111={
+                  Selector(`${prefix}_actions_column`).use()
+                } />
+
               </div>
             </div>
             <Require a1111={results} cnCss={`${cnCssPrefix}-results`}/>
-          </Row>
+          </Column>
         </div>
     )
 }
